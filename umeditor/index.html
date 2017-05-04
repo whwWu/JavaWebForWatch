@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <title>UMEDITOR 完整demo</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link href="themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" src="third-party/jquery.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="umeditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="umeditor.min.js"></script>
+    <script type="text/javascript" src="lang/zh-cn/zh-cn.js"></script>
+    
+</head>
+<body>
+<!--style给定宽度可以影响编辑器的最终宽度-->
+<script type="text/plain" id="myEditor" style="width:700px;height:240px;">
+<p>请输入内容</p>
+</script>
+<div class="clear"></div>
+<div id="btns">
+    <table>
+        <tr>
+            <td>
+                <button class="btn" onclick="getContent()">获得内容</button>&nbsp;
+                <button class="btn" onclick="setContent()">写入内容</button>&nbsp;
+            </td>
+        </tr>
+        
+    </table>
+</div>
+<div>
+    <h3 id="focush2" style=" width:800px; margin:0 auto;"></h3>
+</div>
+<script type="text/javascript">
+    //实例化编辑器
+    var um = UM.getEditor('myEditor');
+	//获得文本框的内容
+    function getContent() {
+        var arr = [];
+       // arr.push("使用editor.getContent()方法可以获得编辑器的内容");
+       // arr.push("内容为：");
+        arr.push(UM.getEditor('myEditor').getContent());
+		$('#focush2').html(arr.join("\n"));
+       // alert(arr.join("\n"));
+    }
+	//给文本框赋值
+    function setContent(isAppendTo) {
+        var arr = [];
+        arr.push("使用editor.setContent('欢迎使用umeditor')方法可以设置编辑器的内容");
+        UM.getEditor('myEditor').setContent('zheshi cong shu ju ku du qu de dx~~', isAppendTo);
+        alert(arr.join("\n"));
+    }
+    
+</script>
+
+</body>
+</html>

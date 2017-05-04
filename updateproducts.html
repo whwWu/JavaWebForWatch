@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>商品管理-商品添加</title>
+<meta charset="UTF-8" />
+
+<link href="umeditor/themes/default/css/umeditor.css" type="text/css"
+	rel="stylesheet">
+
+<script src="js/jquery-2.2.2.js"></script>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.ui.custom.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap-colorpicker.js"></script>
+<script src="js/bootstrap-datepicker.js"></script>
+<script src="js/jquery.uniform.js"></script>
+<script src="js/select2.min.js"></script>
+<script src="js/unicorn.js"></script>
+<script src="js/unicorn.form_common.js"></script>
+<script src="js/json2.js"></script>
+
+<script type="text/javascript" src="umeditor/third-party/jquery.min.js"></script>
+<script type="text/javascript" charset="utf-8"
+	src="umeditor/umeditor.config.js"></script>
+<script type="text/javascript" charset="utf-8"
+	src="umeditor/umeditor.min.js"></script>
+<script type="text/javascript" src="umeditor/lang/zh-cn/zh-cn.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="css/bootstrap.min.css" />
+<link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
+<link rel="stylesheet" href="css/colorpicker.css" />
+<link rel="stylesheet" href="css/datepicker.css" />
+<link rel="stylesheet" href="css/uniform.css" />
+<link rel="stylesheet" href="css/select2.css" />
+<link rel="stylesheet" href="css/unicorn.main.css" />
+<link rel="stylesheet" href="css/unicorn.grey.css" class="skin-color" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<script type="text/javascript" >
+
+
+     //producttype
+      $(function(){
+    	  //使用ajax读取数据表中的记录
+    	 // alert();
+    		$.get("../ProductServlet", {op:"loadType",
+				r : Math.random()
+			}, function(data, status) {
+				
+			    
+					var jsonstr = JSON.parse(data);
+					$.each(jsonstr, function(index, obj) {
+                      		//在select中出现
+							$("#producttype").append("<option value='"+obj.typeId+"'>"+ obj.typeName+"</option>");			
+					});
+    							
+    							
+ 
+      }); 
+      
+      });
+</script>
+</head>
+<body>
+
+
+		<div id="header">
+			<h1><a href="./dashboard.html">Unicorn Admin</a></h1>		
+		</div>
+		
+		<div id="search">
+				<input type="text" placeholder="Search here..." /><button type="submit" class="tip-right" title="Search"><i class="icon-search icon-white"></i></button>
+		</div>
+		<div id="user-nav" class="navbar navbar-inverse">
+            <ul class="nav btn-group">
+                <li class="btn btn-inverse"><a title="" href="#"><i class="icon icon-user"></i> <span class="text">Profile</span></a></li>
+                <li class="btn btn-inverse dropdown" id="menu-messages"><a href="#" data-toggle="dropdown" data-target="#menu-messages" class="dropdown-toggle"><i class="icon icon-envelope"></i> <span class="text">Messages</span> <span class="label label-important">5</span> <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a class="sAdd" title="" href="#">new message</a></li>
+                        <li><a class="sInbox" title="" href="#">inbox</a></li>
+                        <li><a class="sOutbox" title="" href="#">outbox</a></li>
+                        <li><a class="sTrash" title="" href="#">trash</a></li>
+                    </ul>
+                </li>
+                <li class="btn btn-inverse"><a title="" href="#"><i class="icon icon-cog"></i> <span class="text">Settings</span></a></li>
+                <li class="btn btn-inverse"><a title="" href="login.html"><i class="icon icon-share-alt"></i> <span class="text">Logout</span></a></li>
+            </ul>
+        </div>
+            
+		<div id="sidebar">
+			<a href="#" class="visible-phone"><i class="icon icon-th-list"></i> Tables</a>
+			<ul>
+				<li><a href="index.html"><i class="icon icon-home"></i> <span>后台首页</span></a></li>
+
+
+				<li class="submenu">
+					<a href="#"><i class="icon icon-th-list"></i> <span>用户管理</span> <span class="label">2</span></a>
+					<ul>
+						<li><a href="user-list.html">用户列表</a></li>
+						<li><a href="user-reg-v.html">新增用户</a></li>
+						
+					</ul>
+				</li>
+
+				<li class="submenu">
+					<a href="#"><i class="icon icon-th-list"></i> <span>新闻类型管理</span> <span class="label">2</span></a>
+					<ul>
+						<li ><a href="newstype-list.html">类型列表</a></li>
+						<li ><a href="newstype-add-v.html">新增类型</a></li>
+						
+					</ul>
+				</li>
+
+				<li class="submenu active open">
+					<a href="#"><i class="icon icon-th-list"></i> <span>商品管理</span> <span class="label">2</span></a>
+					<ul>
+						<li class="active"><a href="queryproducts.html">商品列表</a></li>
+						<li><a href="addproducts.html">商品上架</a></li>
+						
+					</ul>
+				</li>
+
+	          <li class="submenu">
+					<a href="#"><i class="icon icon-th-list"></i> <span>系统管理</span> <span class="label">2</span></a>
+					<ul>
+						<li><a href="user-list.html">日志管理</a></li>
+						<li><a href="user-reg.html">系统设置</a></li>
+						
+					</ul>
+				</li>
+
+				<li class="submenu">
+					<a href="#"><i class="icon icon-question-sign"></i> <span>用户帮助</span> <span class="label">2</span></a>
+					<ul>
+						<li><a href="user-list.html">版权信息</a></li>
+						<li><a href="user-reg.html">用户使用手册</a></li>
+						
+					</ul>
+				</li>
+
+
+
+			</ul>
+		
+		</div>
+
+	
+
+	<div id="style-switcher">
+		<i class="icon-arrow-left icon-white"></i> <span>Style:</span> <a
+			href="#grey" style="background-color: #555555;border-color: #aaaaaa;"></a>
+		<a href="#blue" style="background-color: #2D2F57;"></a> <a href="#red"
+			style="background-color: #673232;"></a>
+	</div>
+
+	<div id="content">
+		<div id="content-header">
+			<h1>商品管理界面</h1>
+		</div>
+		<div id="breadcrumb">
+			<a href="index.jsp" title="返回主页" class="tip-bottom"><i
+				class="icon-home"></i> 主页</a> <a href="#" class="tip-bottom">商品管理</a> <a
+				href="#" class="current">修改商品</a>
+		</div>
+		<div class="container-fluid">
+			<div class="row-fluid">
+				<div class="span12">
+					<div class="widget-box">
+						<div class="widget-title">
+							<span class="icon"> <i class="icon-align-justify"></i>
+							</span>
+							<h5>商品修改</h5>
+						</div>
+						<div class="widget-content nopadding">
+							<form action="../ProductServlet?op=updateproduct" method="post"
+								class="form-horizontal" enctype="multipart/form-data">
+								<div class="control-group">
+									<label class="control-label">商品名称</label>
+									<div class="controls">
+										<input type="text" name="name"
+											value="${sessionScope.p.productName}" />
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label">商品价格</label>
+									<div class="controls">
+										<input type="text" name="price"
+											value="${sessionScope.p.productPrice}" />
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label">商品类型</label>
+									<div class="controls">
+										<!--利用ajax动态加载商品类型-->
+										<select name="producttype" id="updateproducts">
+										</select>
+									</div>
+								</div>
+
+								<div class="control-group">
+									<label class="control-label">商品图片</label>
+									<div class="controls">
+										<input type="file" name="upload" size="16" />
+										<input type="hidden" name="oldimg" value="${sessionScope.p.productImg}"> 
+									</div>
+								</div>
+
+								<div class="control-group">
+									<label class="control-label">商品库存</label>
+									<div class="controls">
+										<input type="text" name="num"
+											value="${sessionScope.p.productNum}" />
+									</div>
+								</div>
+
+								<div class="control-group">
+									<label class="control-label">商品详情</label>
+									<div class="controls">
+										<div type="text/plain" id="myEditor"
+											style="width:700px;height:240px;">
+											<p>${sessionScope.p.productInfo}</p>
+										</div>
+										<script type="text/javascript">
+											//实例化编辑器
+											var um = UM.getEditor('myEditor');
+											function uptext() {
+												if (!UE.getEditor('myEditor')
+														.hasContents()) {
+													alert('请先填写内容!');
+												} else {
+													document.setweb.info.value = UE
+															.getEditor(
+																	'myEditor')
+															.getContent();
+													document.setweb.submit();
+												}
+											}
+										</script>
+									</div>
+								</div>
+								<div class="form-actions">
+									<button type="submit" class="btn btn-primary"
+										onClick="uptext();">保存</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+			<div class="row-fluid">
+				<div id="footer" class="span12">2016 &copy;亚表商城</div>
+			</div>
+		</div>
+	</div>
+
+
+ <script src="js/excanvas.min.js"></script>
+            <script src="js/jquery.min.js"></script>
+            <script src="js/jquery.ui.custom.js"></script>
+            <script src="js/bootstrap.min.js"></script>
+            <script src="js/jquery.flot.min.js"></script>
+            <script src="js/jquery.flot.resize.min.js"></script>
+            <script src="js/jquery.peity.min.js"></script>
+            <script src="js/fullcalendar.min.js"></script>
+            <script src="js/unicorn.js"></script>
+            <script src="js/unicorn.dashboard.js"></script>
+
+</body>
+</html>
